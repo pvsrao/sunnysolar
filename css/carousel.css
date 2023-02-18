@@ -27,7 +27,7 @@
 .description {
   color: white;
   font-size: 20px;
-  writing-mode: vertical-lr;
+  writing-mode: horizontal-tb;
   transform: rotate(-180deg);
   margin-right: 20px;
 }
