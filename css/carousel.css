@@ -1,0 +1,33 @@
+#myCarousel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: black;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-item.active {
+  opacity: 1;
+}
+
+.description {
+  color: white;
+  font-size: 20px;
+  writing-mode: vertical-lr;
+  transform: rotate(-180deg);
+  margin-right: 20px;
+}
