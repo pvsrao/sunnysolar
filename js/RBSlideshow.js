@@ -5,7 +5,7 @@ var indexPrevSlide;
 var imageUrl;
 var caption;
 var totalSlides;
-var width = 100;
+var width = 70;
 var duration = 5000;
 var durationAnimation = 750;
 var direction;
