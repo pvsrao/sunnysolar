@@ -23,7 +23,7 @@
   object-fit: cover;
 }
 
-.carousel-description {
+.description {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -34,7 +34,7 @@
   font-size: 18px;
 }
 
-.carousel-description p {
+.description p {
   margin: 0;
 }
 
