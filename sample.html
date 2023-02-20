@@ -1,38 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Sunny Solar</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/RBSlideshow.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script type="text/javascript" src="js/RBSlideshow.js"></script>
-	</head>
-
-	<body>
-		<div id="container">
-			<!-- RBSlideshow -->
-			<div id="RBSlideshow">
-				<ul>
-					<li><img src="https://mytrial1.b-cdn.net/constructionmachinery/Dump%20Trucks.jpg" data-caption="jzcm bc nxbc nxcbjxv bnhvchjsd hbvhd  ndbvhf bhdnb vd x bjd dfnv c" alt="slide" /></li>
-					<li><img src="https://mytrial1.b-cdn.net/constructionmachinery/Wheel%20Tractor%20Scraper.jpg" data-caption="Image 2" alt="slide" /></li>
-					<li><img src="https://mytrial1.b-cdn.net/constructionmachinery/Telehandlers.jpg" data-caption="Image Caption 3" alt="slide" /></li>
-          <li><img src="https://mytrial1.b-cdn.net/constructionmachinery/Pile%20Boring%20Machine.jpg" data-caption="Image Caption 3" alt="slide" /></li>
-          <li><img src="https://mytrial1.b-cdn.net/constructionmachinery/Excavators.jpg" data-caption="Image Caption 3" alt="slide" /></li>
-        </ul>
-			</div>
-			<div id="slideshow">
-				<div id="slides">
-					<div id="prevSlide">
-						<p></p>
-					</div>
-					<div id="currentSlide">
-						<p></p>
-					</div>
-					<div id="nextSlide">
-						<p></p>
-					</div>
-				</div>
-			</div>
+<html>
+<head>
+  <title>Slick Carousel Example</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  <style>
+    .carousel-container {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel-container">
+    <div>
+      <img src="https://mytrial1.b-cdn.net/constructionmachinery/Dump%20Trucks.jpg" style="width: 90%; height: 100%; float: left;">
+      <div style="width: 10%; float: right;">
+        <h3>Image 1</h3>
+        <p>Description of image 1</p>
+      </div>
     </div>
-  </body>
+    <div>
+      <img src="https://mytrial1.b-cdn.net/constructionmachinery/Wheel%20Tractor%20Scraper.jpg" style="width: 90%; height: 100%; float: left;">
+      <div style="width: 10%; float: right;">
+        <h3>Image 2</h3>
+        <p>Description of image 2</p>
+      </div>
+    </div>
+    <!-- Add more carousel items as needed -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script >
+    $(document).ready(function(){
+  $('.carousel-container').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          dots: false,
+          arrows: true,
+        }
+      }
+    ]
+  });
+});
+  </script>
+</body>
 </html>
