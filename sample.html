@@ -10,31 +10,24 @@
 </head>
 
 <body>
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Wrapper for carousel items -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="images/b.jpg"/>
-        <div class="description">This is Dump Trucks Product <div> Weight: 50kgs <br> </div></div>
-      </div>
-      <div class="item">
-        <img src="images/b1.jpg"/>
-        <div class="description">Wheel Tractor Scraper</div>
-      </div>
-      <div class="item">
-        <img src="https://mytrial1.b-cdn.net/constructionmachinery/Dump%20Trucks1.jpg"/>
-       <div class="description">Wheel Tractor Scraper</div>
-      </div>
-      <div class="item">
-        <img src="https://mytrial1.b-cdn.net/constructionmachinery/Telehandlers.jpg"/>
-        <div class="description">This is Dump Trucks Product <div> Weight: 50kgs <br> </div></div>
-      </div>
-      <div class="item">
-        <img src="https://mytrial1.b-cdn.net/constructionmachinery/Wheel%20Tractor%20Scraper.jpg"/>
-        
-      </div>
-    </div>
+<div id="myCarousel">
+  <div class="carousel-item" data-description="This is Dump Trucks Product. Weight: 50kgs.">
+    <img src="https://mytrial1.b-cdn.net/constructionmachinery/Dump%20Trucks1.jpg"/>
   </div>
+  <div class="carousel-item" data-description="This is Excavators.">
+    <img src="https://mytrial1.b-cdn.net/constructionmachinery/Excavators.jpg"/>
+  </div>
+  <div class="carousel-item" data-description="Pile Boring Machine."/>
+    <img src="https://mytrial1.b-cdn.net/constructionmachinery/Pile%20Boring%20Machine.jpg"/>
+  </div>
+  <div class="carousel-item" data-description="Telehandlers.">
+    <img src="https://mytrial1.b-cdn.net/constructionmachinery/Telehandlers.jpg"/>
+  </div>
+  <div class="carousel-item" data-description="Wheel Tractor Scraper.">
+    <img src="https://mytrial1.b-cdn.net/constructionmachinery/Wheel%20Tractor%20Scraper.jpg"/>
+  </div>
+</div>
+
   
   <!-- include the jQuery library -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -43,30 +36,35 @@
 
   <!-- your custom JavaScript code for the carousel -->
   <script>
-    $(document).ready(function() {
-      // Set the initial active slide
-      $('#myCarousel .item:first').addClass('active');
+$(document).ready(function() {
+  // Set the initial active slide
+  $('#myCarousel .carousel-item:first').addClass('active');
 
-      // Set up the carousel to transition between slides every 5 seconds
-      setInterval(function() {
-        var currentSlide = $('#myCarousel .item.active');
-        var nextSlide = currentSlide.next('.item');
-        if (nextSlide.length === 0) {
-          nextSlide = $('#myCarousel .item:first');
-        }
-        currentSlide.removeClass('active');
-        nextSlide.addClass('active');
-      }, 5000);
+  // Set up the carousel to transition between slides every 5 seconds
+  setInterval(function() {
+    var currentSlide = $('#myCarousel .carousel-item.active');
+    var nextSlide = currentSlide.next('.carousel-item');
+    if (nextSlide.length === 0) {
+      nextSlide = $('#myCarousel .carousel-item:first');
+    }
+    currentSlide.removeClass('active');
+    nextSlide.addClass('active');
+    
+    // Display the description for the current slide
+    var description = nextSlide.data('description');
+    $('#myCarousel .description').text(description);
+  }, 5000);
 
-      // Toggle fullscreen mode when the user clicks on a slide
-      $('#myCarousel .item').click(function() {
-        if (!document.fullscreenElement) {
-          $('#myCarousel')[0].requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
-      });
-    });
+  // Allow the movement of carousel with back and next arrow keys
+  $(document).keydown(function(e) {
+    if (e.keyCode == 37) {
+      $('#myCarousel').carousel('prev');
+    }
+    else if (e.keyCode == 39) {
+      $('#myCarousel').carousel('next');
+    }
+  });
+});
   </script>
 </body>
 </html>
