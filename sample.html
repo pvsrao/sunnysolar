@@ -1,55 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Slick Carousel Example</title>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
-  <style>
-    .carousel-container {
-      background-color: black;
-    }
-  </style>
+  
 </head>
 <body>
-  <div class="carousel-container">
-    <div>
-      <img src="https://mytrial1.b-cdn.net/constructionmachinery/Dump%20Trucks.jpg" style="width: 90%; height: 100%; float: left;">
-      <div style="width: 10%; float: right;">
-        <h3>Image 1</h3>
-        <p>Description of image 1</p>
-      </div>
-    </div>
-    <div>
-      <img src="https://mytrial1.b-cdn.net/constructionmachinery/Wheel%20Tractor%20Scraper.jpg" style="width: 90%; height: 100%; float: left;">
-      <div style="width: 10%; float: right;">
-        <h3>Image 2</h3>
-        <p>Description of image 2</p>
-      </div>
-    </div>
-    <!-- Add more carousel items as needed -->
-  </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  <script >
-    $(document).ready(function(){
-  $('.carousel-container').slick({
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          dots: false,
-          arrows: true,
-        }
-      }
-    ]
-  });
-});
-  </script>
+  <style>
+    .exhibition-container {
+        position: relative;
+        width: 800px;
+        height: 600px;
+        margin: auto;
+        border: 1px solid black;
+    }
+    .exhibition-container img, .exhibition-container video {
+        position: absolute;
+    }
+    #image1 {
+        top: 50px;
+        left: 50px;
+    }
+    #image2 {
+        top: 200px;
+        left: 400px;
+    }
+    #video1 {
+        top: 400px;
+        left: 100px;
+    }
+</style>
+<img src="https://img.freepik.com/free-vector/exhibition-announcement-advertising-invitation_98292-4487.jpg?w=900&t=st=1678342038~exp=1678342638~hmac=5687fceeb4e97df66ca31f1c74b6b8cfe91a474fbc58301b32a53b883256f34a"/>
+<div class="exhibition-container">
+    <img id="image1" src="image1.jpg" width="200" height="150">
+    <img id="image2" src="image2.jpg" width="200" height="150">
+    <video id="video1" src="video1.mp4" width="400" height="300" controls></video>
+</div>
+
+<script>
+    // JavaScript code to dynamically create and position media elements goes here
+    var mediaImage = document.createElement("img");
+    mediaImage.src = "media-image.jpg";
+    document.querySelector(".image-container").appendChild(mediaImage);
+</script>
+
 </body>
 </html>
