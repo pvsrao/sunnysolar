@@ -160,7 +160,12 @@ const navLinks = document.querySelector('.nav-links');
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     hamburger.classList.toggle('toggle');
+    hamburger.classList.toggle('open'); // Add this class for animation
+
+      // Add body overflow toggle
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
 });
+hamburger.classList.add('hamburger--collapse');
 
 // Form Submission
 document.querySelector('.contact-form').addEventListener('submit', (e) => {
