@@ -1041,46 +1041,33 @@ blockquote {
     transform-origin: right;
     transition: transform 0.5s ease;
     max-width: 100%;
-}
-
-
-.video-wrapper {
+    height: 500px;
+  }
+  
+  .video-wrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
-}
-
-.company-video {
+    overflow: hidden;
+  }
+  
+  .company-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: rgba(0, 243, 255, 0.8);
     border: none;
-    border-radius: 50%;
-    padding: 1rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+  }
 
-.play-button svg {
-    fill: var(--deep-space);
-    width: 100%;
-    height: 100%;
-}
-
+/* Hide YouTube controls */
+  .company-video iframe {
+    pointer-events: none; /* Disable YouTube controls */
+  }
+/* Show custom controls on hover */
+  .video-wrapper:hover .custom-controls {
+    opacity: 1;
+  }
 /* Hover Effects */
 .video-quote-section:hover .quote-container {
     transform: perspective(1000px) rotateY(0deg);
@@ -1090,38 +1077,14 @@ blockquote {
     transform: perspective(1000px) rotateY(0deg);
 }
 
-.video-container:hover .company-video {
-    transform: scale(1.05);
-}
 
-.video-container:hover .play-button {
-    background: rgba(0, 243, 255, 1);
-    transform: translate(-50%, -50%) scale(1.1);
-}
-.video-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(255,255,255,0.2);
-    border-top-color: var(--neon-green);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    z-index: 1;
-    display: none;
-}
 
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.video-wrapper.loading::before {
-    display: block;
-}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .video-quote-section {
@@ -1134,58 +1097,8 @@ blockquote {
         transform: none;
     }
 }
-/* Custom Control Bar */
-.custom-controls {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(10, 25, 47, 0.9);
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
 
-.video-wrapper:hover .custom-controls {
-    opacity: 1;
-}
 
-.custom-controls button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.custom-controls button:hover {
-    color: var(--neon-green);
-    transform: scale(1.1);
-}
-
-/* Timeline */
-.timeline-container {
-    flex: 1;
-    position: relative;
-    height: 5px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.timeline {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 2;
-}
 
 .progress-bar {
     position: absolute;
@@ -1196,60 +1109,6 @@ blockquote {
     z-index: 1;
 }
 
-/* Volume Controls */
-.volume-control {
-    margin-right: -0.5rem;
-}
-
-.volume-slider {
-    width: 80px;
-    height: 5px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 5px;
-    appearance: none;
-    cursor: pointer;
-}
-
-.volume-slider::-webkit-slider-runnable-track {
-    background: transparent;
-}
-
-.volume-slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* Icons */
-.pause-icon,
-.mute-icon,
-.compress-icon {
-    display: none;
-}
-
-/* Fullscreen Styles */
-:-webkit-full-screen .video-wrapper {
-    width: 100%;
-    height: 100%;
-}
-
-:-moz-full-screen .video-wrapper {
-    width: 100%;
-    height: 100%;
-}
-
-:-ms-fullscreen .video-wrapper {
-    width: 100%;
-    height: 100%;
-}
-
-:fullscreen .video-wrapper {
-    width: 100%;
-    height: 100%;
-}
 /* Scrolling Banner Styles */
 .scrolling-banner {
     background: linear-gradient(45deg, #FF8C00, #FFD700);
