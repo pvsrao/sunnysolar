@@ -161,43 +161,36 @@
             </div>
 
             <div class="video-container">
-                <div class="video-wrapper">
-                    <video class="company-video" 
-                        poster="images/solar2.jpg" 
-                        preload="metadata">
-                        <source src="images/sunysolaradvideo.mp4" type="video/mp4">
-                    </video>
-                    <button class="play-button" aria-label="Play video">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    </button>
-                    <!-- Custom Control Bar -->
-                    <div class="custom-controls">
-                        <button class="play-pause" aria-label="Play/Pause">
-                            <span class="play-icon">▶</span>
-                            <span class="pause-icon">⏸</span>
-                        </button>
-                        
-                        <div class="timeline-container">
-                            <input type="range" class="timeline" min="0" max="100" value="0" aria-label="Video timeline">
-                            <div class="progress-bar"></div>
+                    <div class="video-container">
+                        <div class="video-wrapper">
+                        <iframe 
+                            id="company-video"
+                            class="company-video" 
+                            src="https://www.youtube.com/embed/PZ2bqYhF5_o" 
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
                         </div>
-                        
-                        <button class="volume-control" aria-label="Mute/Unmute">
-                            <span class="volume-icon">🔊</span>
-                            <span class="mute-icon">🔇</span>
+                        <div class="custom-controls">
+                        <button class="play-pause">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
                         </button>
-                        
-                        <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="1" aria-label="Volume control">
-                        
-                        <button class="fullscreen" aria-label="Fullscreen">
-                            <span class="expand-icon">⛶</span>
-                            <span class="compress-icon">⛶</span>
-                        </button>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div id="video-fallback" style="display: none;">
+                        <p>Unable to load the video. <a href="https://www.youtube.com/watch?v=PZ2bqYhF5_o" target="_blank">Click here to watch on YouTube</a>.</p>
+                    </div>
+                    
+                    <script>
+                        setTimeout(() => {
+                        if (!window.YT || !window.YT.Player) {
+                            document.getElementById('video-fallback').style.display = 'block';
+                        }
+                        }, 5000); // Show fallback after 5 seconds if the API hasn't loaded
+                    </script>
+              </div>
         </div>
         
     </section>
