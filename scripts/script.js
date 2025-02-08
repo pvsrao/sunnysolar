@@ -460,153 +460,7 @@ gsap.utils.toArray('.word-rotator').forEach(rotator => {
         );
     });
 });
-const video = document.querySelector('.company-video');
-const playButton = document.querySelector('.play-button');
 
-// Play/Pause functionality
-playButton.addEventListener('click', () => {
-    if (video.paused) {
-        video.play();
-        playButton.style.display = 'none';
-    } else {
-        video.pause();
-        playButton.style.display = 'block';
-    }
-});
-
-video.addEventListener('click', () => {
-    if (video.paused) {
-        video.play();
-        playButton.style.display = 'none';
-    } else {
-        video.pause();
-        playButton.style.display = 'block';
-    }
-});
-
-// Show play button when video ends
-video.addEventListener('ended', () => {
-    playButton.style.display = 'block';
-});
-
-// Keyboard accessibility
-video.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' || e.code === 'Enter') {
-        if (video.paused) {
-            video.play();
-            playButton.style.display = 'none';
-        } else {
-            video.pause();
-            playButton.style.display = 'block';
-        }
-    }
-});
-video.addEventListener('waiting', () => {
-    video.parentElement.classList.add('loading');
-});
-
-video.addEventListener('canplay', () => {
-    video.parentElement.classList.remove('loading');
-});
-
-const playPauseBtn = document.querySelector('.play-pause');
-const timeline = document.querySelector('.timeline');
-const progressBar = document.querySelector('.progress-bar');
-const volumeControl = document.querySelector('.volume-control');
-const volumeSlider = document.querySelector('.volume-slider');
-const fullscreenBtn = document.querySelector('.fullscreen');
-
-// Play/Pause
-playPauseBtn.addEventListener('click', () => {
-    if (video.paused) {
-        video.play();
-        playPauseBtn.querySelector('.play-icon').style.display = 'none';
-        playPauseBtn.querySelector('.pause-icon').style.display = 'inline';
-    } else {
-        video.pause();
-        playPauseBtn.querySelector('.play-icon').style.display = 'inline';
-        playPauseBtn.querySelector('.pause-icon').style.display = 'none';
-    }
-});
-
-// Timeline
-video.addEventListener('timeupdate', () => {
-    const percent = (video.currentTime / video.duration) * 100;
-    timeline.value = percent;
-    progressBar.style.width = `${percent}%`;
-});
-
-timeline.addEventListener('input', () => {
-    const time = (timeline.value / 100) * video.duration;
-    video.currentTime = time;
-});
-
-// Volume
-volumeSlider.addEventListener('input', () => {
-    video.volume = volumeSlider.value;
-    if (video.volume > 0) {
-        volumeControl.querySelector('.volume-icon').style.display = 'inline';
-        volumeControl.querySelector('.mute-icon').style.display = 'none';
-    }
-});
-
-volumeControl.addEventListener('click', () => {
-    if (video.volume > 0) {
-        video.volume = 0;
-        volumeSlider.value = 0;
-        volumeControl.querySelector('.volume-icon').style.display = 'none';
-        volumeControl.querySelector('.mute-icon').style.display = 'inline';
-    } else {
-        video.volume = 1;
-        volumeSlider.value = 1;
-        volumeControl.querySelector('.volume-icon').style.display = 'inline';
-        volumeControl.querySelector('.mute-icon').style.display = 'none';
-    }
-});
-
-// Fullscreen
-fullscreenBtn.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-        video.parentElement.requestFullscreen();
-        fullscreenBtn.querySelector('.expand-icon').style.display = 'none';
-        fullscreenBtn.querySelector('.compress-icon').style.display = 'inline';
-    } else {
-        document.exitFullscreen();
-        fullscreenBtn.querySelector('.expand-icon').style.display = 'inline';
-        fullscreenBtn.querySelector('.compress-icon').style.display = 'none';
-    }
-});
-
-// Keyboard Controls
-document.addEventListener('keydown', (e) => {
-    switch (e.code) {
-        case 'Space':
-            if (video.paused) video.play();
-            else video.pause();
-            break;
-        case 'ArrowRight':
-            video.currentTime += 5;
-            break;
-        case 'ArrowLeft':
-            video.currentTime -= 5;
-            break;
-        case 'ArrowUp':
-            video.volume = Math.min(video.volume + 0.1, 1);
-            volumeSlider.value = video.volume;
-            break;
-        case 'ArrowDown':
-            video.volume = Math.max(video.volume - 0.1, 0);
-            volumeSlider.value = video.volume;
-            break;
-        case 'KeyF':
-            if (!document.fullscreenElement) {
-                video.parentElement.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-            break;
-    }
-});
 let isPaused = false;
 const banner = document.querySelector('.scrolling-content');
 
@@ -642,20 +496,7 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
 
     // Proceed with EmailJS
 });
-// emailjs.init('KxzYjEVsNW-zl3mGm'); // Replace with your EmailJS user ID
 
-//     document.getElementById('contactForm').addEventListener('submit', function(e) {
-//       e.preventDefault();
-      
-//       emailjs.sendForm('service_7qdq20w', 'template_6oqyih9', this)
-//         .then(() => {
-//           document.getElementById('message').innerHTML = 'Message sent successfully!';
-//           document.getElementById('contactForm').reset();
-//         })
-//         .catch(() => {
-//           document.getElementById('message').innerHTML = 'Failed to send message. Please try again.';
-//         });
-//     });
 
     emailjs.init('eN6OEpADI-Fq3j5qA');
     
@@ -696,4 +537,69 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
         // } else {
         //     console.error('Contact form not found!');
         // }
-    
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+let player;
+
+function onYouTubeIframeAPIReady() {
+    console.log('YouTube IFrame API is ready');
+  player = new YT.Player('company-video', {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(event) {
+    console.log('Player is ready');
+    // Enable custom controls
+    document.querySelector('.play-pause').addEventListener('click', () => {
+      if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+        document.querySelector('.play-icon').style.display = 'inline';
+        document.querySelector('.pause-icon').style.display = 'none';
+      } else {
+        player.playVideo();
+        document.querySelector('.play-icon').style.display = 'none';
+        document.querySelector('.pause-icon').style.display = 'inline';
+      }
+    });
+  }
+
+function onPlayerStateChange(event) {
+    console.log('Player state changed:', event.data);
+  const playPauseBtn = document.querySelector('.play-pause');
+  if (event.data === YT.PlayerState.PLAYING) {
+    playPauseBtn.querySelector('.play-icon').style.display = 'none';
+    playPauseBtn.querySelector('.pause-icon').style.display = 'inline';
+  } else {
+    playPauseBtn.querySelector('.play-icon').style.display = 'inline';
+    playPauseBtn.querySelector('.pause-icon').style.display = 'none';
+  }
+}
+
+
+const fullscreenBtn = document.querySelector('.fullscreen');
+
+fullscreenBtn.addEventListener('click', () => {
+  const iframe = document.querySelector('.company-video');
+  if (!document.fullscreenElement) {
+    iframe.requestFullscreen();
+    fullscreenBtn.querySelector('.expand-icon').style.display = 'none';
+    fullscreenBtn.querySelector('.compress-icon').style.display = 'inline';
+  } else {
+    document.exitFullscreen();
+    fullscreenBtn.querySelector('.expand-icon').style.display = 'inline';
+    fullscreenBtn.querySelector('.compress-icon').style.display = 'none';
+  }
+});
+const video = document.querySelector('.company-video');
+const playButton = document.querySelector('.play-button');
+
+playButton.addEventListener('click', () => {
+    video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+});
+
