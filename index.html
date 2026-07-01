@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -71,6 +72,42 @@
     })(window,document,'script','dataLayer','GTM-TD3WR9LR');</script>
     <!-- End Google Tag Manager -->
 </head>
+    <script>
+(function() {
+  var SUPABASE_URL = 'https://wqotjjseireaczeqbzoq.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxb3RqanNlaXJlYWN6ZXFiem9xIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjQxNTY1NywiZXhwIjoyMDk3OTkxNjU3fQ.J43lKPzzEl--HHYySWdZ_F4Qz_QqGkz1o8vw3-NmaJY';
+
+  var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('form');
+    if (!form) return;
+    form.addEventListener('submit', async function() {
+      var name = document.querySelector('input[placeholder*="Name"]')?.value?.trim() || '';
+      var phone = document.querySelector('input[type="tel"]')?.value?.trim() || '';
+      var location = document.querySelector('input[placeholder*="City"]')?.value?.trim() || '';
+      var bill = document.querySelector('input[placeholder*="Bill"]')?.value?.trim() || '';
+      var sel = document.querySelector('select');
+      var system_type = sel ? sel.options[sel.selectedIndex]?.text : '';
+      if (!name || !phone) return;
+      try {
+        await sb.from('leads').insert([{
+          name: name,
+          phone: phone,
+          location: location,
+          monthly_bill: bill,
+          system_type: system_type,
+          source: 'Website',
+          status: 'Follow-Up',
+          notes: 'Lead from sunnysolar.in website form',
+          created_by: null
+        }]);
+      } catch(e) { /* silent fail */ }
+    });
+  });
+})();
+</script>
+
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD3WR9LR"
