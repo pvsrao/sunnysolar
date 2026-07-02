@@ -628,6 +628,48 @@
     </footer>
 
     <!-- Scripts -->
+    <script>
+(function() {
+  var SUPABASE_URL     = 'https://wqotjjseireaczeqbzoq.supabase.co';
+  var SUPABASE_ANON_KEY = 'PASTE_YOUR_ANON_EYEJ_KEY_HERE'; // ← anon key, NOT service_role
+
+  var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Hook into your existing submitLead() function
+  var _originalSubmitLead = window.submitLead;
+  window.submitLead = async function() {
+    // Run your existing form logic first
+    if (typeof _originalSubmitLead === 'function') _originalSubmitLead();
+
+    // Then capture to CRM
+    var name     = document.getElementById('fname')?.value?.trim()  || '';
+    var phone    = document.getElementById('fphone')?.value?.trim() || '';
+    var location = document.getElementById('fcity')?.value?.trim()  || '';
+    var bill     = document.getElementById('fbill')?.value?.trim()  || '';
+    var sel      = document.getElementById('ftype');
+    var system   = sel ? sel.options[sel.selectedIndex]?.text : '';
+
+    if (!name || !phone) return;
+
+    try {
+      await sb.from('leads').insert([{
+        name:         name,
+        phone:        phone,
+        location:     location,
+        monthly_bill: bill,
+        system_type:  system,
+        source:       'Website',
+        status:       'Follow-Up',
+        notes:        'Lead from sunnysolar.in website form',
+        created_by:   null
+      }]);
+      console.log('CRM: Lead saved from website form');
+    } catch(e) {
+      console.warn('CRM sync failed:', e.message);
+    }
+  };
+})();
+</script>
     <script src="scripts/script.js"></script>
 </body>
 </html>
